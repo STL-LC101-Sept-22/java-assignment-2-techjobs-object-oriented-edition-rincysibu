@@ -11,10 +11,14 @@ public class JobField {
     }
 
     public JobField(String value) {
-        super();
+        this();
         if(value.isBlank()){
             value= "Data not available";
         }
+        this.value = value;
+    }
+
+    public void setValue(String value) {
         this.value = value;
     }
 
@@ -25,5 +29,9 @@ public class JobField {
     @Override
     public String toString() {
        return value;
+    }
+
+    public int getId() {
+        return id;
     }
 }
