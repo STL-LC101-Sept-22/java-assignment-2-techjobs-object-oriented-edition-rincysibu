@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class Job {
 
-    public org.launchcode.techjobs.oo.Employer Employer;
+
     private int id;
     private static int nextId = 1;
 
@@ -25,6 +25,9 @@ public class Job {
 
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
         this();
+        if(name.isBlank()){
+            name="Data not available";
+        }
         this.name = name;
         this.employer = employer;
         this.location = location;
@@ -56,6 +59,7 @@ public class Job {
     }
 
     public String getName() {
+
         return name;
     }
 
@@ -94,5 +98,18 @@ public class Job {
 
     public void setCoreCompetency(CoreCompetency coreCompetency) {
         this.coreCompetency = coreCompetency;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("\n");
+        sb.append("ID: ").append(id).append('\n');
+        sb.append("Name: ").append(name).append('\n');
+        sb.append("Employer: ").append(employer).append('\n');
+        sb.append("Location: ").append(location).append('\n');
+        sb.append("Position Type: ").append(positionType).append('\n');
+        sb.append("Core Competency: ").append(coreCompetency);
+        sb.append('\n');
+        return sb.toString();
     }
 }

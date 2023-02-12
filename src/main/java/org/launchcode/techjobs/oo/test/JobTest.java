@@ -14,10 +14,6 @@ import static org.junit.Assert.*;
 public class JobTest {
 
     @Test
-    public void testToStringStartsAndEndsWithNewLine(){
-        assertTrue(true);
-    }
-    @Test
     public void testSettingJobId(){
         Job job1=new Job();
         Job job2=new Job();
@@ -68,6 +64,38 @@ public class JobTest {
         Job job2=new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
    String spec="Test two job objects with different ID returns false";
    assertFalse(spec,job1.equals(job2));
+
+    }
+    @Test
+    public void  testToStringStartsAndEndsWithNewLine(){
+
+        Job job=new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+       //testing new line before and after the job object
+        String spec="To String method returns job object with a blank line before and after job information";
+        String actual=job.toString();
+        assertTrue(actual.startsWith("\n"));
+        assertTrue(actual.endsWith("\n"));
+        //Testing the display for job object
+        spec="Displaying the job object as per the requirement";
+        String expected="\nID: 1\nName: Product tester\nEmployer: ACME\n" +
+                "Location: Desert\nPosition Type: Quality control" +
+                "\nCore Competency: Persistence\n";
+        assertEquals(spec,expected,actual);
+
+//Testing to dispaly data not vailable if the value of the field is empty
+         job=new Job("", new Employer("ACME"), new Location(""), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+    spec="Display empty field as Data not avaliable";
+    actual=job.toString();
+        System.out.println(actual);
+        System.out.println(job.getName());
+    expected="\nID: 2\nName: Data not available\nEmployer: ACME\n" +
+        "Location: Data not available\nPosition Type: Quality control" +
+                "\nCore Competency: Persistence\n";
+    assertEquals(spec,expected,actual);
+
+
+
+
 
     }
 
