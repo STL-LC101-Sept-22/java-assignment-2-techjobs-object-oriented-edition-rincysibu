@@ -5,9 +5,8 @@ import java.util.Objects;
 public class Job {
 
 
-    private int id;
     private static int nextId = 1;
-
+    private final int id;
     private String name;
     private Employer employer;
     private Location location;
@@ -25,8 +24,8 @@ public class Job {
 
     public Job(String name, Employer employer, Location location, PositionType positionType, CoreCompetency coreCompetency) {
         this();
-        if(name.isBlank()){
-            name="Data not available";
+        if (name.isBlank()) {
+            name = "Data not available";
         }
         this.name = name;
         this.employer = employer;
@@ -63,37 +62,36 @@ public class Job {
         return name;
     }
 
-    public Employer getEmployer() {
-        return employer;
-    }
-
-    public Location getLocation() {
-        return location;
-    }
-
-    public PositionType getPositionType() {
-        return positionType;
-    }
-
-    public CoreCompetency getCoreCompetency() {
-        return coreCompetency;
-    }
-
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Employer getEmployer() {
+        return employer;
     }
 
     public void setEmployer(Employer employer) {
         this.employer = employer;
     }
 
+    public Location getLocation() {
+        return location;
+    }
+
     public void setLocation(Location location) {
         this.location = location;
     }
 
+    public PositionType getPositionType() {
+        return positionType;
+    }
+
     public void setPositionType(PositionType positionType) {
         this.positionType = positionType;
+    }
+
+    public CoreCompetency getCoreCompetency() {
+        return coreCompetency;
     }
 
     public void setCoreCompetency(CoreCompetency coreCompetency) {
@@ -103,6 +101,10 @@ public class Job {
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("\n");
+        if (name.isBlank() && employer.toString().isBlank()
+                && location.toString().isBlank() && positionType.toString().isBlank()) {
+            return "OOPS! This job does not seem to exist.";
+        }
         sb.append("ID: ").append(id).append('\n');
         sb.append("Name: ").append(name).append('\n');
         sb.append("Employer: ").append(employer).append('\n');
